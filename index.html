@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hacker Login Page</title>
+
+  <style>
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+      font-family: 'Courier New', monospace;
+
+    }
+
+    body {
+
+      height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: radial-gradient(circle at center, #000 0%, #001f1f 100%);
+
+      overflow: hidden;
+
+      color: #00ff99;
+
+    }
+
+    /* Animated background matrix effect */
+
+    canvas {
+
+      position: absolute;
+
+      top: 0;
+
+      left: 0;
+
+      z-index: 0;
+
+    }
+
+    .login-box {
+
+      position: relative;
+
+      z-index: 1;
+
+      width: 380px;
+
+      background: rgba(0, 20, 0, 0.7);
+
+      padding: 40px;
+
+      border: 2px solid #00ff99;
+
+      border-radius: 15px;
+
+      box-shadow: 0 0 25px #00ff99;
+
+      text-align: center;
+
+    }
+
+    .login-box h2 {
+
+      margin-bottom: 30px;
+
+      font-size: 2em;
+
+      color: #00ff99;
+
+      text-shadow: 0 0 10px #00ff99;
+
+    }
+
+    .input-box {
+
+      margin: 20px 0;
+
+    }
+
+    .input-box input {
+
+      width: 100%;
+
+      padding: 12px 15px;
+
+      background: transparent;
+
+      border: 1px solid #00ff99;
+
+      border-radius: 10px;
+
+      color: #00ff99;
+
+      font-size: 1em;
+
+      outline: none;
+
+      transition: 0.3s;
+
+    }
+
+    .input-box input:focus {
+
+      box-shadow: 0 0 15px #00ff99;
+
+    }
+
+    .btn {
+
+      width: 100%;
+
+      padding: 12px;
+
+      background: #00ff99;
+
+      color: #000;
+
+      font-weight: bold;
+
+      border: none;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+    }
+
+    .btn:hover {
+
+      background: #00cc77;
+
+      box-shadow: 0 0 20px #00ff99;
+
+    }
+
+    .link {
+
+      margin-top: 15px;
+
+      color: #00ff99;
+
+    }
+
+    .link a {
+
+      color: #00ffcc;
+
+      text-decoration: none;
+
+    }
+
+    .link a:hover {
+
+      text-decoration: underline;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <canvas id="matrix"></canvas>
+
+  <div class="login-box">
+
+    <h2>Hacker Login</h2>
+
+    <form>
+
+      <div class="input-box">
+
+        <input type="text" placeholder="Username" required>
+
+      </div>
+
+      <div class="input-box">
+
+        <input type="password" placeholder="Password" required>
+
+      </div>
+
+      <button type="submit" class="btn"><a href="web.html">Login</a></button>
+
+      <div class="link">
+
+
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <script>
+
+    // Matrix rain effect
+
+    const canvas = document.getElementById('matrix');
+
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+
+    canvas.width = window.innerWidth;
+
+    const letters = '01';
+
+    const fontSize = 18;
+
+    const columns = canvas.width / fontSize;
+
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00ff99';
+
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+
+          drops[i] = 0;
+
+        drops[i]++;
+
+      }
+
+    }
+
+    setInterval(draw, 33);
+
+  </script>
+
+</body>
+
+</html>
